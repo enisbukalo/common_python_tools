@@ -17,6 +17,13 @@ def test_singleton():
     obj2_memory_location = hex(id(obj2))
     assert obj1_memory_location == obj2_memory_location
 
+    assert obj1.x == 10
+    assert obj2.x == 10
+
+    obj1.x = 100
+    assert obj1.x == 100
+    assert obj2.x == 100
+
 def test_base():
     obj1 = BaseTestClass()
     obj2 = BaseTestClass()

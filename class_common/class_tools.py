@@ -15,8 +15,8 @@ class Singleton:
         """
         if not hasattr(cls, "instance"):
             cls.instance = super(Singleton, cls).__new__(cls)
-            cls.setup()
         return cls.instance
 
-    def setup():
-        pass
+    def __init__(self) -> None:
+        #NOTE: Just an example of an init within Singleton.
+        self.x = 10
