@@ -1,5 +1,5 @@
 import pytest
-from statistics.statistics_tools import calc_linear_regression
+from statistics_common import calc_linear_regression
 
 def test_calc_linear_regression_empty_input():
     xs = []

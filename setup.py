@@ -1,13 +1,18 @@
 from setuptools import setup, find_packages
 
+VERSION = "0.0.1"
+DESCRIPTION = "Custom Python Tools."
+LONG_DESCRIPTION = "My package to house my commonly used Python tools."
+
 setup(
     name="commnon_tools",
-    version="0.0.1",
-    description="My package to house my commonly used Python tools",
-    url="https://github.com/enisbukalo/common_tools.git",
+    version=VERSION,
     author="Enis Bukalo",
     author_email="N/A",
-    license="Apache License 2.0",
+    description=DESCRIPTION,
+    long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    zip_safe=False
-)
+    install_requires=["pytest"],
+    url="https://github.com/enisbukalo/common_tools.git",
+    license="Apache License 2.0",
+    )
