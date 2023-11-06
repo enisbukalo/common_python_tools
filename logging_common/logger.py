@@ -42,15 +42,16 @@ class Logger:
 
     def __get_verbosity(self, verbosity: str) -> int:
         """
-        Returns the corresponding logging level for the given verbosity string.
+        Get the corresponding logging level for a given verbosity level.
 
-        :param verbosity: A string representing the verbosity level.
-        :type verbosity: str
+        Parameters:
+            verbosity (str): The verbosity level to be converted.
 
-        :return: An integer representing the logging level.
-        :rtype: int
+        Returns:
+            int: The corresponding logging level.
 
-        :raises ValueError: If the verbosity level is invalid.
+        Raises:
+            ValueError: If the verbosity level is invalid.
         """
         match verbosity.upper():
             case "DEBUG":
