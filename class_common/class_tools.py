@@ -8,6 +8,7 @@ Functions:
     None
 """
 
+
 class Singleton:
     """
     A singleton class that provides a single instance of a class.
@@ -19,6 +20,7 @@ class Singleton:
         __init__(self) -> None: Initialize the singleton instance.
 
     """
+
     def __new__(cls):
         """
         Create and return a singleton instance of the class.
@@ -38,5 +40,5 @@ class Singleton:
         return cls.instance
 
     def __init__(self) -> None:
-        #NOTE: Just an example of an init within Singleton.
+        # NOTE: Just an example of an init within Singleton.
         self.x = 10

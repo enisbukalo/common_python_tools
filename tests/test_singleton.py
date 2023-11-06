@@ -1,12 +1,15 @@
 from class_common import Singleton
 
+
 class SingletonTestClass(Singleton):
     def __init__(self) -> None:
         super().__init__()
 
+
 class BaseTestClass:
     def __init__(self) -> None:
         pass
+
 
 def test_singleton():
     obj1 = SingletonTestClass()
@@ -27,6 +30,7 @@ def test_singleton():
     obj1.x = 100
     assert obj1.x == 100
     assert obj2.x == 100
+
 
 def test_base():
     obj1 = BaseTestClass()

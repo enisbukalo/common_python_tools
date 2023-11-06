@@ -23,7 +23,7 @@ def ping_check(ip_to_check: str, ping_count: int = 1) -> bool:
     Returns:
         bool: True if the ping is successful, False otherwise.
     """
-    cmd = "-n" if os.name =="nt" else "-c"
+    cmd = "-n" if os.name == "nt" else "-c"
     output = subprocess.Popen(f"ping {ip_to_check} {cmd} {ping_count}", stdout=subprocess.PIPE, encoding="utf-8")
 
     data = ""
