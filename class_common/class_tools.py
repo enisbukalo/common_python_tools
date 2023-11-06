@@ -1,4 +1,24 @@
+"""
+This module provides classes and functions for working with Python classes.
+
+Classes:
+    Singleton: A singleton class that provides a single instance of a class.
+
+Functions:
+    None
+"""
+
 class Singleton:
+    """
+    A singleton class that provides a single instance of a class.
+
+    This class ensures that only one instance of a class is created, and provides a way to access that instance.
+
+    Methods:
+        __new__(cls): Create and return a singleton instance of the class.
+        __init__(self) -> None: Initialize the singleton instance.
+
+    """
     def __new__(cls):
         """
         Create and return a singleton instance of the class.

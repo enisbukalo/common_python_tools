@@ -1,3 +1,12 @@
+"""
+This module provides classes and functions for working with networking.
+
+Functions:
+    ping_check(ip_to_check: str, ping_count: int = 1)
+
+Classes:
+    None
+"""
 import subprocess
 import re
 import os

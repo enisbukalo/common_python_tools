@@ -1,3 +1,12 @@
+"""
+This module provides classes and functions for working with statistics.
+
+Functions:
+    calc_linear_regression(xs: Iterable, ys: Iterable)
+
+Classes:
+    None
+"""
 from typing import Iterable
 
 def calc_linear_regression(xs: Iterable, ys: Iterable) -> tuple:
