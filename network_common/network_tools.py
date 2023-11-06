@@ -2,8 +2,6 @@ import subprocess
 import re
 import os
 
-IP = "127.0.0.1"
-# IP = "192.168.1.0"
 
 def ping_check(ip_to_check: str, ping_count: int = 1) -> bool:
     """Responsible determining if IP is reachable.
@@ -23,5 +21,3 @@ def ping_check(ip_to_check: str, ping_count: int = 1) -> bool:
         data = data + line
 
     return False if len(re.findall("TTL", data)) == 0 else True
-
-print(ping_check(IP, 5))
