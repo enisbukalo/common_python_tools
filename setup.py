@@ -15,4 +15,5 @@ setup(
     install_requires=["pytest"],
     url="https://github.com/enisbukalo/common_tools.git",
     license="Apache License 2.0",
+    python_requires=">=3.10",
     )
