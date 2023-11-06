@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="commnon_tools",
@@ -8,6 +8,6 @@ setup(
     author="Enis Bukalo",
     author_email="N/A",
     license="Apache License 2.0",
-    packages=["statistics"],
+    packages=find_packages(),
     zip_safe=False
 )

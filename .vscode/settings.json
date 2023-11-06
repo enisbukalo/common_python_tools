@@ -1,0 +1,81 @@
+{
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "variable.parameter.function-call.python",
+                "settings": {
+                    "foreground": "#ff0000"
+                }
+            },
+            {
+                "scope": [
+                    "variable.parameter.function.language.special.self.python",
+                    "keyword.control.flow.python",
+                    "keyword.control.import.python"
+                ],
+                "settings": {
+                    "foreground": "#fffb00"
+                }
+            },
+            {
+                "scope": [
+                    "entity.name.function",
+                    "punctuation.definition.decorator.python"
+                ],
+                "settings": {
+                    "foreground": "#ffae00"
+                }
+            },
+            {
+                "scope": "variable.other.constant",
+                "settings": {
+                    "foreground": "#4FC1FF",
+                    "fontStyle": "bold underline"
+                }
+            },
+            {
+                "scope": [
+                    "keyword.operator",
+                    "punctuation.definition",
+                    "punctuation.separator",
+                    "punctuation.section"
+                ],
+                "settings": {
+                    "foreground": "#ffffff",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": "keyword.operator.logical.python",
+                "settings": {
+                    "foreground": "#ff00bf",
+                    "fontStyle": "bold underline"
+                }
+            },
+            {
+                "scope": [
+                    "string",
+                    "punctuation.definition.comment.python",
+                    "punctuation.definition.string",
+                    "comment"
+                ],
+                "settings": {
+                    "foreground": "#2a9600"
+                }
+            },
+            {
+                "scope": "constant.numeric",
+                "settings": {
+                    "foreground": "#00ffff"
+                }
+            },
+            {
+                "scope": "constant.character.format.placeholder.other.python",
+                "settings": {
+                    "foreground": "#569CD6",
+                    "fontStyle": "bold"
+                }
+            }
+        ]
+    }
+}

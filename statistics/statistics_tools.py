@@ -12,6 +12,9 @@ def calc_linear_regression(xs: Iterable, ys: Iterable) -> tuple:
         tuple: A tuple containing the r-squared value, slope, and y-intercept of the linear regression.
     """
     # Get The Means.
+    if len(xs) == 0 and len(ys) == 0: raise ValueError("Inputs must not be empty.")
+    if len(xs) != len(ys): raise ValueError("Inputs must be the same length.")
+
     x_mean = sum(xs) / len(xs)
     y_mean = sum(ys) / len(ys)
 
