@@ -16,3 +16,6 @@ def test_state_machine():
 
     state_machine.on_event(event_three)
     assert isinstance(state_machine.current_state, EndingState)
+
+    state_machine.on_event(event_one)
+    assert isinstance(state_machine.current_state, EndingState)

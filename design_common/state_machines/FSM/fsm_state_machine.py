@@ -18,7 +18,7 @@ class FsmStateMachine:
 
     def on_event(self, event: Event) -> None:
         resulting_state: State = self._current_state.on_event(event)
-        if resulting_state != self._current_state:
+        if resulting_state is not None and resulting_state != self._current_state:
             self._current_state.on_exit()
             self._current_state = resulting_state
             self._current_state.on_enter()
