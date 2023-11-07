@@ -6,15 +6,30 @@ from .event import Event
 
 class State(ABC):
     def __init__(self) -> None:
-        self._name = self.__repr__
+        """
+        State class to be used in a Finite State Machine.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
+        self._name = self.__class__.__name__
 
     @property
     def name(self) -> str:
+        """
+        Get the name of the object.
+
+        Returns:
+            str: The name of the object.
+        """
         return self._name
 
     @classmethod
     def on_enter(self) -> None:
-        print(f"Entering {self.__repr__}")
+        print(f"Entering {self.name}")
 
     @classmethod
     def on_event(self, event: Event):
@@ -22,10 +37,4 @@ class State(ABC):
 
     @classmethod
     def on_exit(self) -> None:
-        print(f"Exiting {self.__repr__}")
-
-    def __repr__(self) -> str:
-        return self.__str__()
-
-    def __str__(self) -> str:
-        return self.__class__.__name__
+        print(f"Exiting {self.name}")
