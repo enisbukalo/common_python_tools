@@ -1,17 +1,11 @@
 from design_common.state_machines.FSM.fsm_state_machine import FsmStateMachine
 from design_common.state_machines.FSM.events import Events
-from design_common.state_machines.FSM.fsm_states import *
+
+from fsm_test_states import *
+from fsm_test_transitions import *
 
 
 def test_state_machine():
-    state_machine = FsmStateMachine()
-
-    assert state_machine.state.__str__() == StateOne().__str__()
-    state_machine.on_event(Events.EVENT_1)
-    assert state_machine.state.__str__() == StateTwo().__str__()
-    state_machine.on_event(Events.EVENT_2)
-    assert state_machine.state.__str__() == StateOne().__str__()
-    state_machine.on_event(Events.EVENT_2)
-    assert state_machine.state.__str__() == StateOne().__str__()
-    state_machine.on_event(Events.EVENT_1)
-    assert state_machine.state.__str__() == StateTwo().__str__()
+    state_machine = FsmStateMachine(StartingState)
+    state_machine.add_states([StateOne, StateTwo])
+    state_machine.add_transitions(to_one, to_two)

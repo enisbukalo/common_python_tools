@@ -3,9 +3,9 @@ from .state import State
 
 
 class Transition(ABC):
-    def __init__(self, end_state: State = None) -> None:
-        if end_state is None:
-            raise ValueError("end_state cannot be None")
+    def __init__(self, from_state: State = None, end_state: State = None) -> None:
+        if end_state is None or from_state is None:
+            raise ValueError("end_state or from_state cannot be None")
 
         self.end_state = end_state
 
