@@ -1,34 +1,40 @@
 from design_common.state_machines.FSM.state import State
+from test_fsm_events import *
 
 
 class StartingState(State):
-    def on_start(self):
-        print(f"Entering {self.__repr__()}")
+    def __init__(self) -> None:
+        super().__init__()
 
-    def on_event(self):
-        print(f"Event in {self.__repr__()}")
-
-    def on_exit(self):
-        print(f"Exiting {self.__repr__()}")
+    def on_event(self, event: Event) -> None:
+        match event.name:
+            case event_one.name:
+                return StateOne()
 
 
 class StateOne(State):
-    def on_start(self):
-        print(f"Entering {self.__repr__()}")
+    def __init__(self) -> None:
+        super().__init__()
 
-    def on_event(self):
-        print(f"Event in {self.__repr__()}")
-
-    def on_exit(self):
-        print(f"Exiting {self.__repr__()}")
+    def on_event(self, event: Event) -> None:
+        match event.name:
+            case event_two.name:
+                return StateTwo()
 
 
 class StateTwo(State):
-    def on_start(self):
-        print(f"Entering {self.__repr__()}")
+    def __init__(self) -> None:
+        super().__init__()
 
-    def on_event(self):
-        print(f"Event in {self.__repr__()}")
+    def on_event(self, event: Event) -> None:
+        match event.name:
+            case event_three.name:
+                return EndingState()
 
-    def on_exit(self):
-        print(f"Exiting {self.__repr__()}")
+
+class EndingState(State):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def on_event(self, event: Event) -> None:
+        return None
