@@ -1,5 +1,6 @@
 from design_common.state_machines.FSM.fsm_state_machine import FsmStateMachine
 
+from fsm_test_events import *
 from fsm_test_states import *
 
 
