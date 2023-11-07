@@ -6,8 +6,16 @@ class State(ABC):
         pass
 
     @classmethod
-    def on_event(self, event):
-        pass
+    def on_enter(self):
+        raise NotImplementedError
+
+    @classmethod
+    def on_event(self):
+        raise NotImplementedError
+
+    @classmethod
+    def on_exit(self):
+        raise NotImplementedError
 
     def __repr__(self) -> str:
         return self.__str__()
