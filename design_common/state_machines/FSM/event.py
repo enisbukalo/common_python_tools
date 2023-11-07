@@ -10,7 +10,7 @@ class Event(ABC):
             name (str, optional): The name of the instance. Defaults to None.
 
         Raises:
-            ValueError: If the name is None.
+            ValueError: If the name is specified.
 
         Returns:
             None
