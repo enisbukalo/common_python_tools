@@ -1,9 +1,9 @@
-from abc import ABC
+from __future__ import annotations
 
 from .event import Event
 
 
-class State(ABC):
+class State:
     def __init__(self) -> None:
         """
         State class to be used in a Finite State Machine.
@@ -14,6 +14,7 @@ class State(ABC):
         Returns:
             None
         """
+        self.transitions = []
         self._name = self.__class__.__name__.upper()
 
     @property
@@ -25,6 +26,10 @@ class State(ABC):
             str: The name of the object.
         """
         return self._name
+
+    @classmethod
+    def add_transitions(self, transitions: list) -> None:
+        self.transitions.extend(transitions)
 
     @classmethod
     def on_enter(self) -> None:
@@ -40,20 +45,18 @@ class State(ABC):
         print(f"Entering {self.name}")
 
     @classmethod
-    def on_event(self, event: Event):
-        """
-        Handles the actions to be taken when exiting the state.
+    def on_event(self, event: Event) -> None:
+        transitions_found = [i for i in self.transitions if i.event == event]
+        transition: "Transition" = transitions_found[0] if len(transitions_found) != 0 else None
 
-        Parameters:
-            event (Event): The event to be handled.
-
-        Returns:
-            None
-
-        Raises:
-            NotImplementedError: This method must be implemented by the child class.
-        """
-        raise NotImplementedError
+        if transition is None:
+            return None
+        else:
+            if transition.from_state.name != self._name:
+                return None
+            else:
+                transition.execute_callback()
+                return transition.to_state
 
     @classmethod
     def on_exit(self) -> None:
