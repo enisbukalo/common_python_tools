@@ -6,7 +6,7 @@ from .event import Event
 class State(ABC):
     def __init__(self) -> None:
         """
-        State class to be used in a Finite State Machine.
+        State class to be used in a Hierarchical State Machine.
 
         Parameters:
             None

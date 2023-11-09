@@ -1,5 +1,5 @@
 from design_common.state_machines.FSM.state import State
-from test_fsm_events import *
+from fsm_test_events import *
 
 
 class StartingState(State):
