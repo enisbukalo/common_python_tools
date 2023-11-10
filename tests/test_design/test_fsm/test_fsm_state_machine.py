@@ -13,9 +13,11 @@ class FsmTestStateMachine(FsmStateMachine):
         middle_state = MiddleState()
         ending_state = EndingState()
 
-        starting_logic_transition = Transition(Events.STARTING_LOGIC, starting_state, None, None)
+        Events.STARTING_LOGIC.data = 10
+
+        starting_logic_transition = Transition(Events.STARTING_LOGIC.set_data(10), starting_state, None, None)
         starting_transition = Transition(Events.STARTING_EVENT, starting_state, middle_state, callback_to_test, [1, 2, 3])
-        middle_work_transition = Transition(Events.MIDDLE_LOGIC, middle_state, None, None)
+        middle_work_transition = Transition(Events.MIDDLE_LOGIC.set_data(20), middle_state, None, None)
         middle_transition = Transition(Events.ENDING_EVENT, middle_state, ending_state, callback_to_test, ["CHECK"])
         reset_transition = Transition(
             Events.RESET_EVENT, ending_state, starting_state, callback_to_test, ["Back", "To", "Start", 1]
@@ -37,12 +39,14 @@ def test_state_machine():
 
     state_machine.on_event(Events.STARTING_LOGIC)
     assert isinstance(state_machine.current_state, StartingState)
+    assert Events.STARTING_LOGIC.data == 10
 
     state_machine.on_event(Events.STARTING_EVENT)
     assert isinstance(state_machine.current_state, MiddleState)
 
     state_machine.on_event(Events.MIDDLE_LOGIC)
     assert isinstance(state_machine.current_state, MiddleState)
+    assert Events.MIDDLE_LOGIC.data == 20
 
     state_machine.on_event(Events.ENDING_EVENT)
     assert isinstance(state_machine.current_state, EndingState)
