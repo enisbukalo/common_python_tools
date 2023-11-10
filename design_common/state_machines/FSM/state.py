@@ -44,7 +44,6 @@ class State:
         """
         self.transitions.extend(transitions)
 
-    @classmethod
     def on_enter(self) -> None:
         """
         Handles the actions to be taken when entering the state.
@@ -55,7 +54,7 @@ class State:
         Returns:
             None
         """
-        print(f"Entering {self.name}")
+        print(f"Entering {self._name}")
 
     def on_event(self, event: Event) -> Union[Transition, None]:
         """
@@ -80,8 +79,7 @@ class State:
                 transition.execute_callback()
                 return transition.to_state
 
-    @classmethod
-    def on_exit(cls) -> None:
+    def on_exit(self) -> None:
         """
         Handles the actions to be taken when exiting the state.
 
@@ -91,4 +89,4 @@ class State:
         Returns:
             None
         """
-        print(f"Exiting {cls.name}")
+        print(f"Exiting {self._name}")
