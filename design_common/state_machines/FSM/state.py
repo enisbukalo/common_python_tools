@@ -1,5 +1,10 @@
 from __future__ import annotations
+import typing
 
+if typing.TYPE_CHECKING:
+    from .transition import Transition
+
+from typing import Union
 from .event import Event
 
 
@@ -27,8 +32,16 @@ class State:
         """
         return self._name
 
-    @classmethod
-    def add_transitions(self, transitions: list) -> None:
+    def add_transitions(self, transitions: list[Transition]) -> None:
+        """
+        Add transitions to the list of transitions.
+
+        Args:
+            transitions (list): The list of transitions to be added.
+
+        Returns:
+            None
+        """
         self.transitions.extend(transitions)
 
     @classmethod
@@ -44,10 +57,19 @@ class State:
         """
         print(f"Entering {self.name}")
 
-    @classmethod
-    def on_event(self, event: Event) -> None:
+    def on_event(self, event: Event) -> Union[Transition, None]:
+        """
+        Executes the appropriate transition based on the given event.
+        Executes transition callback in the process.
+
+        Parameters:
+            event (Event): The event triggering the transition.
+
+        Returns:
+            Union[Transition, None]: The resulting transition or None if no transition is found.
+        """
         transitions_found = [i for i in self.transitions if i.event == event]
-        transition: "Transition" = transitions_found[0] if len(transitions_found) != 0 else None
+        transition: Transition = transitions_found[0] if len(transitions_found) != 0 else None
 
         if transition is None:
             return None
@@ -59,7 +81,7 @@ class State:
                 return transition.to_state
 
     @classmethod
-    def on_exit(self) -> None:
+    def on_exit(cls) -> None:
         """
         Handles the actions to be taken when exiting the state.
 
@@ -69,4 +91,4 @@ class State:
         Returns:
             None
         """
-        print(f"Exiting {self.name}")
+        print(f"Exiting {cls.name}")
