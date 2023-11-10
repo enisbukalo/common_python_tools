@@ -4,9 +4,6 @@ import typing
 if typing.TYPE_CHECKING:
     from .transition import Transition
 
-from typing import Union
-from .event import Event
-
 
 class State:
     def __init__(self) -> None:
@@ -44,7 +41,6 @@ class State:
         """
         self.transitions.extend(transitions)
 
-    @classmethod
     def on_enter(self) -> None:
         """
         Handles the actions to be taken when entering the state.
@@ -55,18 +51,18 @@ class State:
         Returns:
             None
         """
-        print(f"Entering {self.name}")
+        print(f"Entering {self._name}")
 
-    def on_event(self, event: Event) -> Union[Transition, None]:
+    def on_event(self, event: int) -> State | None:
         """
         Executes the appropriate transition based on the given event.
         Executes transition callback in the process.
 
         Parameters:
-            event (Event): The event triggering the transition.
+            event (int): The event triggering the transition.
 
         Returns:
-            Union[Transition, None]: The resulting transition or None if no transition is found.
+            State | None: The next state if a valid transition is found, otherwise None.
         """
         transitions_found = [i for i in self.transitions if i.event == event]
         transition: Transition = transitions_found[0] if len(transitions_found) != 0 else None
@@ -80,8 +76,7 @@ class State:
                 transition.execute_callback()
                 return transition.to_state
 
-    @classmethod
-    def on_exit(cls) -> None:
+    def on_exit(self) -> None:
         """
         Handles the actions to be taken when exiting the state.
 
@@ -91,4 +86,4 @@ class State:
         Returns:
             None
         """
-        print(f"Exiting {cls.name}")
+        print(f"Exiting {self._name}")

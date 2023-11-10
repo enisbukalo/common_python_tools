@@ -1,7 +1,5 @@
-from typing import Any
-
-from .event import Event
 from .state import State
+from .event import Event
 
 
 class Transition:

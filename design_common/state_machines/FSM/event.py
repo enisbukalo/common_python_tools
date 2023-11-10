@@ -1,30 +1,54 @@
-from abc import ABC
+from __future__ import annotations
+
+from typing import Any
 
 
-class Event(ABC):
-    def __init__(self, name: str = None) -> None:
+class Event:
+    def __init__(self, data: Any = None) -> None:
         """
-        Event class to be used in a Finite State Machine.
+        Event class to be used within a Finite State Machine.
 
-        Args:
-            name (str, optional): The name of the instance. Defaults to None.
-
-        Raises:
-            ValueError: If the name is specified.
+        Parameters:
+            data (Any): The data to initialize the object with.
 
         Returns:
             None
         """
-        if name is None:
-            raise ValueError("name cannot be None")
-        self._name = name
+        self._data = data
 
     @property
-    def name(self) -> str:
+    def data(self) -> Any:
         """
-        Get the name of the object.
+        Return the value of the data attribute.
 
         Returns:
-            str: The name of the object.
+            Any: The value of the data attribute.
         """
-        return self._name
+        return self._data
+
+    @data.setter
+    def data(self, data: Any) -> Event:
+        """
+        Setter method for the data attribute.
+
+        Parameters:
+            data (Any): The new value for the data attribute.
+
+        Returns:
+            Event: The instance of the Event class with the updated data attribute.
+        """
+        self._data = data
+        return self
+
+    def set_data(self, data: Any) -> Event:
+        """
+        Sets the data for the event.
+
+        Args:
+            data (Any): The data to set for the event.
+
+        Returns:
+            Event: The Event object with the updated data.
+        """
+        self._data = data
+        return self
