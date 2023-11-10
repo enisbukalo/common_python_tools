@@ -1,5 +1,4 @@
 from .state import State
-from .event import Event
 
 
 class FsmStateMachine:
@@ -32,12 +31,12 @@ class FsmStateMachine:
         """
         return self._current_state
 
-    def on_event(self, event: Event) -> None:
+    def on_event(self, event: int) -> None:
         """
         Handle an event and transition to a new state if necessary.
 
         Args:
-            event (Event): The event to be handled.
+            event (int): The event to be handled.
 
         Returns:
             None

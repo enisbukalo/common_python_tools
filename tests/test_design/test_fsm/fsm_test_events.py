@@ -1,7 +1,9 @@
-from design_common.state_machines.FSM.event import Event
+from enum import Enum
 
-STARTING_LOGIC = Event("starting_logic_event")
-STARTING_EVENT = Event("event_one")
-MIDDLE_LOGIC = Event("middle_logic_event")
-ENDING_EVENT = Event("event_two")
-RESET_EVENT = Event("to_start")
+
+class Events(Enum):
+    STARTING_LOGIC = 0
+    STARTING_EVENT = 1
+    MIDDLE_LOGIC = 2
+    ENDING_EVENT = 3
+    RESET_EVENT = 4

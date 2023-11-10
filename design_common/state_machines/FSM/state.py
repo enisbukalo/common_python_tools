@@ -5,7 +5,6 @@ if typing.TYPE_CHECKING:
     from .transition import Transition
 
 from typing import Union
-from .event import Event
 
 
 class State:
@@ -56,13 +55,13 @@ class State:
         """
         print(f"Entering {self._name}")
 
-    def on_event(self, event: Event) -> Union[Transition, None]:
+    def on_event(self, event: int) -> Union[Transition, None]:
         """
         Executes the appropriate transition based on the given event.
         Executes transition callback in the process.
 
         Parameters:
-            event (Event): The event triggering the transition.
+            event (int): The event triggering the transition.
 
         Returns:
             Union[Transition, None]: The resulting transition or None if no transition is found.
