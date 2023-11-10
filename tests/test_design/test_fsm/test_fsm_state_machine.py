@@ -7,15 +7,19 @@ from fsm_test_events import Events
 
 class FsmTestStateMachine(FsmStateMachine):
     def __init__(self) -> None:
+        # Set Initial Starting State.
         starting_state = StartingState()
         super().__init__(starting_state)
 
+        # Create Rest Of The States You Need.
         middle_state = MiddleState()
         ending_state = EndingState()
 
+        # Done Just For Testing. Shows How To Set Event Data.
         Events.STARTING_LOGIC.data = 10
 
-        starting_logic_transition = Transition(Events.STARTING_LOGIC.set_data(10), starting_state, None, None)
+        # Create Your Transitions
+        starting_logic_transition = Transition(Events.STARTING_LOGIC, starting_state, None, None)
         starting_transition = Transition(Events.STARTING_EVENT, starting_state, middle_state, callback_to_test, [1, 2, 3])
         middle_work_transition = Transition(Events.MIDDLE_LOGIC.set_data(20), middle_state, None, None)
         middle_transition = Transition(Events.ENDING_EVENT, middle_state, ending_state, callback_to_test, ["CHECK"])
@@ -23,6 +27,7 @@ class FsmTestStateMachine(FsmStateMachine):
             Events.RESET_EVENT, ending_state, starting_state, callback_to_test, ["Back", "To", "Start", 1]
         )
 
+        # Add Transitions To States.
         starting_state.add_transitions([starting_logic_transition, starting_transition])
         middle_state.add_transitions([middle_work_transition, middle_transition])
         ending_state.add_transitions([reset_transition])
