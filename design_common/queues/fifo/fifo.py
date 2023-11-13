@@ -1,10 +1,19 @@
-from typing import Any, Iterable
-
 from design_common.queues.queue_base import Queue
 
 
 class Fifo(Queue):
     def __init__(self, boundary: int = None, replace_at_boundary: bool = False, take_partial: bool = False) -> None:
+        """
+        Initializes a First In First Out queue (FIFO).
+
+        Args:
+            boundary (int, optional): The boundary value. Defaults to None.
+            replace_at_boundary (bool, optional): Whether to replace at the boundary. Defaults to False.
+            take_partial (bool, optional): Whether to take partial. Defaults to False.
+
+        Returns:
+            None
+        """
         super().__init__(boundary, replace_at_boundary, take_partial)
 
     def enqueue(self, *args) -> None:
