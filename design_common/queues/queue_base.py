@@ -1,61 +1,42 @@
-from copy import deepcopy
 from typing import Any
 
 
 class Queue:
-    def __init__(self, boundary: int = None, replace_at_boundary: bool = False, take_partial: bool = False) -> None:
+    def __init__(self, max_queue_size: int = None) -> None:
         """
         Base Queue class for other specialized queue types to use.
 
         Parameters:
-            boundary (int): The boundary value of the queue. Default is None.
-            replace_at_boundary (bool): Whether to replace at the boundary. Default is False.
-            take_partial (bool): Whether to take partial new items. Default is False.
+            max_queue_size (int): The max size of the queue. Default is None.
 
         Returns:
             None
         """
-        if not isinstance(boundary, int) and not isinstance(boundary, type(None)):
-            raise TypeError("'boundary' must be an integer")
-        if not isinstance(replace_at_boundary, bool):
-            raise TypeError("'replace_at_boundary' must be a boolean")
-        if not isinstance(take_partial, bool):
-            raise TypeError("'take_partial' must be a boolean")
+        if not isinstance(max_queue_size, int) and not isinstance(max_queue_size, type(None)):
+            raise TypeError("'max_queue_size' must be an integer")
 
-        self._boundary = boundary
-        self._replace = replace_at_boundary
-        self._takes_partial = take_partial
+        self._max_queue_size = max_queue_size
         self._queue = []
 
     @property
-    def boundary(self) -> int:
+    def max_size(self) -> int:
         """
-        Return the value of the boundary property.
+        Return the value of the max size property.
 
         Returns:
-            int: The value of the boundary property.
+            int: The value of the max size property.
         """
-        return self._boundary
-
-    @property
-    def queue(self):
-        """
-        Return a deep copy of the `_queue` attribute.
-
-        Returns:
-            object: A deep copy of the `_queue` attribute.
-        """
-        return deepcopy((self._queue))
+        return self._max_queue_size
 
     @property
     def free_space(self) -> int | None:
         """
-        Calculates the amount of free space available in the queue assuming a boundary was set.
+        Calculates the amount of free space available in the queue assuming a max size was set.
 
         Returns:
-            int | None: The amount of free space available, or None if the boundary is not enabled.
+            int | None: The amount of free space available, or None if the max size is not enabled.
         """
-        return self._boundary - self.length if self.boundary_enabled else None
+        return self._max_queue_size - self.length if self.has_max_size else None
 
     @property
     def is_empty(self) -> bool:
@@ -68,34 +49,14 @@ class Queue:
         return True if self.length == 0 else False
 
     @property
-    def boundary_enabled(self) -> bool:
+    def has_max_size(self) -> bool:
         """
-        Returns if the boundary is enabled.
+        Returns if the queue has a max size.
 
         Returns:
-            bool: True if boundary was enabled, False otherwise.
+            bool: True if queue has a max size, False otherwise.
         """
-        return self._boundary is not None
-
-    @property
-    def replace_enabled(self) -> bool:
-        """
-        Returns if replacing is enabled.
-
-        Returns:
-            bool: True if replacing is enabled, False otherwise.
-        """
-        return self._replace
-
-    @property
-    def partial_enabled(self) -> bool:
-        """
-        Returns if partial enqueuing is enabled.
-
-        Returns:
-            bool: True if partial enqueuing is enabled, False otherwise.
-        """
-        return self._takes_partial
+        return self._max_queue_size is not None
 
     @property
     def first(self) -> Any | None:
@@ -171,23 +132,23 @@ class Queue:
         """
         self._queue = []
 
-    def _at_boundary(self) -> bool:
+    def _at_limit(self) -> bool:
         """
-        Check if the current queue is at the boundary.
+        Check if the current queue is at the max size limit.
 
         Returns:
-            bool: True if the length of the queue is equal to the boundary value set, else False.
+            bool: True if the length of the queue is equal to the max size value set, else False.
         """
-        return self.length == self._boundary if self.boundary_enabled else False
+        return self.length == self._max_queue_size if self.has_max_size else False
 
-    def _surpasses_boundary(self, *args) -> bool:
+    def _surpasses_max_size(self, *args) -> bool:
         """
-        Check if the length of the object plus the length of the arguments surpasses the boundary.
+        Check if the length of the queue plus the length of the arguments surpasses the max size.
 
         Parameters:
             *args: *args: The items to add to the queue.
 
         Returns:
-            bool: True if the length of the queue + length of args surpasses the boundary, False otherwise.
+            bool: True if the length of the queue + length of args surpasses the maz size, False otherwise.
         """
-        return self.length + len(args) > self._boundary if self.boundary_enabled else False
+        return self.length + len(args) > self._max_queue_size if self.has_max_size else False

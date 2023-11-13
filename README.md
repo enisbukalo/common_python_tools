@@ -19,7 +19,6 @@ Run the following commands in your local environment to test.
 #### [State Machines](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines)
 - [Finite State Machine (FSM)](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines/FSM)
 #### [Queue's](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues)
-- [Double-Ended Queue (Deque)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/deque)
 - [First In First Out (FIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/fifo)
 - [Last In First Out (LIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/lifo)
 - [Priority Queue](https://github.com/enisbukalo/common_tools/tree/main/queues/state_machines/priority)
