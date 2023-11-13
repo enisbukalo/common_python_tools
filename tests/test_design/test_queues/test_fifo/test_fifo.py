@@ -170,3 +170,7 @@ def test_dequeue():
     assert fifo.dequeue() == 3
     assert fifo.is_empty is True
     assert fifo.queue == []
+
+    assert fifo.dequeue() is None
+    assert fifo.is_empty is True
+    assert fifo.queue == []
