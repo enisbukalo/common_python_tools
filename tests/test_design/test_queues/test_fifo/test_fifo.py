@@ -153,7 +153,7 @@ def test_enqueue_with_boundary_with_replace_with_partial():
     assert fifo.queue == ["100", 50, True, True, False]
 
 
-def test_dequeue():
+def test_dequeue_single():
     fifo = Fifo()
     fifo.enqueue(1)
     fifo.enqueue(2)
@@ -172,5 +172,22 @@ def test_dequeue():
     assert fifo.queue == []
 
     assert fifo.dequeue() is None
+    assert fifo.is_empty is True
+    assert fifo.queue == []
+
+
+def test_dequeue_multiple():
+    fifo = Fifo()
+    fifo.enqueue(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+    assert fifo.dequeue(2) == [1, 2]
+    assert fifo.is_empty is False
+    assert fifo.queue == [3, 4, 5, 6, 7, 8, 9, 10]
+
+    assert fifo.dequeue(5) == [3, 4, 5, 6, 7]
+    assert fifo.is_empty is False
+    assert fifo.queue == [8, 9, 10]
+
+    assert fifo.dequeue(10) == [8, 9, 10]
     assert fifo.is_empty is True
     assert fifo.queue == []

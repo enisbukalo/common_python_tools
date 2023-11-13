@@ -103,7 +103,7 @@ class Queue:
         Adds the given arguments to the existing queue.
 
         Parameters:
-            *args: The items to add to the queue.
+            *args (Any): The items to add to the queue.
 
         Returns:
             None
@@ -114,12 +114,12 @@ class Queue:
         raise NotImplementedError
 
     @classmethod
-    def dequeue(self) -> Any | None:
+    def dequeue(self, multiple: int | None = None) -> Any | None:
         """
         Removed an item from the queue.
 
         Parameters:
-            None
+            multiple (int | None): The number of items to remove from the queue.
 
         Returns:
             Any | None: Return item from queue if queue is not empty, else return None.

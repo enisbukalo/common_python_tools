@@ -56,5 +56,14 @@ class Fifo(Queue):
         else:
             self._queue.extend(args)
 
-    def dequeue(self):
-        return self._queue.pop(0) if not self.is_empty else None
+    def dequeue(self, multiple=None):
+        if multiple is not None:
+            to_return = []
+            for _ in range(multiple):
+                try:
+                    to_return.append(self._queue.pop(0))
+                except IndexError:
+                    pass
+            return to_return
+        else:
+            return self._queue.pop(0) if not self.is_empty else None
