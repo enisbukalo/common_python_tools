@@ -25,6 +25,9 @@ def test_fifo_properties():
     assert fifo._at_boundary() is False
     assert fifo._surpasses_boundary() is False
     assert fifo.free_space == None
+    assert fifo.__first__() is None
+    assert fifo.__last__() is None
+    assert fifo.__len__() is 0
 
 
 def test_enqueue_with_no_boundary():
@@ -33,12 +36,17 @@ def test_enqueue_with_no_boundary():
 
     fifo.enqueue(1)
     assert fifo.__len__() == 1
+    assert fifo.__first__() == 1
+    assert fifo.__last__() == 1
 
     fifo.clear()
     assert fifo.__len__() == 0
+    assert fifo.queue == []
 
     fifo.enqueue(0, 1, 2, 3, 4, 5, 6, 7)
     assert fifo.__len__() == 8
+    assert fifo.__first__() == 0
+    assert fifo.__last__() == 7
 
 
 def test_enqueue_with_boundary_without_replace_without_partial():
