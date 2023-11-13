@@ -20,6 +20,12 @@ def test_fifo_properties():
     assert fifo.replace_enabled is False
     assert fifo.partial_enabled is True
 
+    fifo = Fifo()
+
+    assert fifo._at_boundary() is False
+    assert fifo._surpasses_boundary() is False
+    assert fifo.free_space == None
+
 
 def test_enqueue_with_no_boundary():
     fifo = Fifo()
