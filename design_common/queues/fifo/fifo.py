@@ -16,7 +16,7 @@ class Fifo(Queue):
         """
         super().__init__(boundary, replace_at_boundary, take_partial)
 
-    def enqueue(self, *args) -> None:
+    def enqueue(self, *args):
         # Do we even have a boundary?
         if self.boundary_enabled:
             at_boundary = self._at_boundary()
@@ -56,5 +56,5 @@ class Fifo(Queue):
         else:
             self._queue.extend(args)
 
-    def dequeue(self) -> None:
-        self._queue.pop(0) if self.__len__() != 0 else None
+    def dequeue(self):
+        return self._queue.pop(0) if not self.is_empty else None

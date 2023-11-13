@@ -151,3 +151,22 @@ def test_enqueue_with_boundary_with_replace_with_partial():
     fifo.enqueue(True, True, False)
     assert fifo.__len__() == 5
     assert fifo.queue == ["100", 50, True, True, False]
+
+
+def test_dequeue():
+    fifo = Fifo()
+    fifo.enqueue(1)
+    fifo.enqueue(2)
+    fifo.enqueue(3)
+
+    assert fifo.dequeue() == 1
+    assert fifo.is_empty is False
+    assert fifo.queue == [2, 3]
+
+    assert fifo.dequeue() == 2
+    assert fifo.is_empty is False
+    assert fifo.queue == [3]
+
+    assert fifo.dequeue() == 3
+    assert fifo.is_empty is True
+    assert fifo.queue == []

@@ -58,6 +58,16 @@ class Queue:
         return self._boundary - self.__len__() if self.boundary_enabled else None
 
     @property
+    def is_empty(self) -> bool:
+        """
+        Returns if the queue is empty.
+
+        Returns:
+            bool: True if the queue is empty, False otherwise.
+        """
+        return True if self.__len__() == 0 else False
+
+    @property
     def boundary_enabled(self) -> bool:
         """
         Returns if the boundary is enabled.
@@ -104,7 +114,7 @@ class Queue:
         raise NotImplementedError
 
     @classmethod
-    def dequeue(self) -> None:
+    def dequeue(self) -> Any | None:
         """
         Removed an item from the queue.
 
@@ -112,7 +122,7 @@ class Queue:
             None
 
         Returns:
-            None
+            Any | None: Return item from queue if queue is not empty, else return None.
 
         Raises:
             NotImplementedError: This method is meant to be overridden by child classes.
@@ -159,7 +169,7 @@ class Queue:
         Returns:
             Any | None: The first element in the queue, or None if the queue is empty.
         """
-        return self._queue[0] if self.__len__() != 0 else None
+        return self._queue[0] if not self.is_empty else None
 
     def __last__(self) -> Any | None:
         """
@@ -168,7 +178,7 @@ class Queue:
         Returns:
             Any | None: The last element in the queue, or None if the queue is empty.
         """
-        return self._queue[-1] if self.__len__() != 0 else None
+        return self._queue[-1] if not self.is_empty else None
 
     def __len__(self) -> int:
         """
