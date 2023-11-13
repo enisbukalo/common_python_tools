@@ -1,6 +1,6 @@
 import pytest
 
-from design_common.queues.fifo.fifo import Fifo
+from design_common.queues.fifo import Fifo
 
 
 def test_fifo_properties():
@@ -44,6 +44,8 @@ def test_enqueue_with_no_max_size():
         assert fifo.first() == 0
         assert fifo.last() == item
 
+    assert fifo._queue == [0, 1, 2, 3, 4, 5, 6, 7]
+
 
 def test_enqueue_with_max_size():
     fifo = Fifo(max_queue_size=3)
@@ -72,9 +74,9 @@ def test_enqueue_with_max_size():
 
 def test_dequeue_single():
     fifo = Fifo()
-    fifo.enqueue(1)
-    fifo.enqueue(2)
-    fifo.enqueue(3)
+    assert fifo.enqueue(1) is True
+    assert fifo.enqueue(2) is True
+    assert fifo.enqueue(3) is True
 
     assert fifo.dequeue() == 1
     assert fifo.is_empty() is False
