@@ -15,13 +15,10 @@ class Fifo(Queue):
         super().__init__(max_queue_size)
 
     def enqueue(self, *args, replace: bool = False, add_partial: bool = False):
-        # Do we even have a boundary?
+        # Do we even have a max size of the queue?
         if self.has_max_size:
-            at_boundary = self._at_limit()
-            surpasses_boundary = self._surpasses_max_size(*args)
-
-            # Are we at the boundary?
-            if at_boundary:
+            # Are we at the end of the queue?
+            if self._at_limit():
                 # Are we replacing old items with the new items?
                 if replace:
                     amount_to_remove = len(args)
@@ -32,8 +29,8 @@ class Fifo(Queue):
                 else:
                     return
 
-            # Will we be at the boundary if we add these items?
-            if surpasses_boundary:
+            # Will we be at the end of the queue if we add these items?
+            if self._surpasses_max_size(*args):
                 # Are we replacing old items with the new items?
                 if replace:
                     amount_to_remove = len(args) - (self._max_queue_size - self.length)

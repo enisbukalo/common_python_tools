@@ -8,9 +8,6 @@ class Queue:
 
         Parameters:
             max_queue_size (int): The max size of the queue. Default is None.
-
-        Returns:
-            None
         """
         if not isinstance(max_queue_size, int) and not isinstance(max_queue_size, type(None)):
             raise TypeError("'max_queue_size' must be an integer")
@@ -96,9 +93,6 @@ class Queue:
         Parameters:
             *args (Any): The items to add to the queue.
 
-        Returns:
-            None
-
         Raises:
             NotImplementedError: This method is meant to be overridden by child classes.
         """
@@ -121,15 +115,7 @@ class Queue:
         raise NotImplementedError
 
     def clear(self) -> None:
-        """
-        Clears the queue.
-
-        Parameters:
-            None
-
-        Returns:
-            None
-        """
+        """Clears the queue."""
         self._queue = []
 
     def _at_limit(self) -> bool:
