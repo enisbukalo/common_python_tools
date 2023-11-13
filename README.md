@@ -17,7 +17,6 @@ Run the following commands in your local environment to test.
 - [Class Tools](https://github.com/enisbukalo/common_tools/blob/main/class_common/class_tools.py)
 ### [Design](https://github.com/enisbukalo/common_tools/tree/main/design_common)
 - [Finite State Machine (FSM)](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines/FSM)
-- [Hierarchical State Machine (HSM)](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines/HSM)
 ### [Logging](https://github.com/enisbukalo/common_tools/tree/main/logging_common)
 - [General Logger](https://github.com/enisbukalo/common_tools/blob/main/logging_common/logger.py)
 ### [Network](https://github.com/enisbukalo/common_tools/tree/main/network_common)
