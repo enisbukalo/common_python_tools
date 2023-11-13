@@ -16,16 +16,15 @@ class Queue:
         self._queue = []
 
     @property
-    def max_size(self) -> int:
+    def max_size(self) -> int | None:
         """
         Return the value of the max size property.
 
         Returns:
-            int: The value of the max size property.
+            int | None: The value of the max size property if one exists otherwise None.
         """
         return self._max_queue_size
 
-    @property
     def free_space(self) -> int | None:
         """
         Calculates the amount of free space available in the queue assuming a max size was set.
@@ -33,9 +32,17 @@ class Queue:
         Returns:
             int | None: The amount of free space available, or None if the max size is not enabled.
         """
-        return self._max_queue_size - self.length if self.has_max_size else None
+        return self._max_queue_size - self.length() if self.has_max_size() else None
 
-    @property
+    def is_full(self) -> bool:
+        """
+        Check if the current queue is at the max size limit.
+
+        Returns:
+            bool: True if the length of the queue is equal to the max size value set, else False.
+        """
+        return self.length() == self._max_queue_size if self.has_max_size() else False
+
     def is_empty(self) -> bool:
         """
         Returns if the queue is empty.
@@ -43,9 +50,8 @@ class Queue:
         Returns:
             bool: True if the queue is empty, False otherwise.
         """
-        return True if self.length == 0 else False
+        return True if self.length() == 0 else False
 
-    @property
     def has_max_size(self) -> bool:
         """
         Returns if the queue has a max size.
@@ -55,7 +61,6 @@ class Queue:
         """
         return self._max_queue_size is not None
 
-    @property
     def first(self) -> Any | None:
         """
         Return the first element in the queue.
@@ -63,9 +68,8 @@ class Queue:
         Returns:
             Any | None: The first element in the queue, or None if the queue is empty.
         """
-        return self._queue[0] if not self.is_empty else None
+        return self._queue[0] if not self.is_empty() else None
 
-    @property
     def last(self) -> Any | None:
         """
         Get the last element in the queue.
@@ -73,9 +77,8 @@ class Queue:
         Returns:
             Any | None: The last element in the queue, or None if the queue is empty.
         """
-        return self._queue[-1] if not self.is_empty else None
+        return self._queue[-1] if not self.is_empty() else None
 
-    @property
     def length(self) -> int:
         """
         Return the number of elements in the queue.
@@ -86,55 +89,68 @@ class Queue:
         return len(self._queue)
 
     @classmethod
-    def enqueue(self, *args) -> None:
+    def _add_to_queue(self, item: Any) -> None:
         """
-        Adds the given arguments to the existing queue.
+        Adds an item to the queue.
 
         Parameters:
-            *args (Any): The items to add to the queue.
+            item (Any): The item to be added to the queue.
 
         Raises:
-            NotImplementedError: This method is meant to be overridden by child classes.
+            NotImplementedError: This function is not implemented and should be overridden by subclasses.
         """
         raise NotImplementedError
 
     @classmethod
-    def dequeue(self, multiple: int | None = None) -> Any | None:
+    def _remove_from_queue(self, multiple: int | None = None) -> Any | None:
         """
-        Removed an item from the queue.
+        Retrieve an item from the queue.
 
         Parameters:
-            multiple (int | None): The number of items to remove from the queue.
+            multiple (int | None): The number of items to remove from the queue. Defaults to None.
 
         Returns:
-            Any | None: Return item from queue if queue is not empty, else return None.
+            Any | None: The removed item from the queue, or None if the queue is empty.
 
         Raises:
-            NotImplementedError: This method is meant to be overridden by child classes.
+            NotImplementedError: This method is not implemented.
         """
         raise NotImplementedError
 
     def clear(self) -> None:
         """Clears the queue."""
-        self._queue = []
+        self._queue.clear()
 
-    def _at_limit(self) -> bool:
+    def enqueue(self, item: Any) -> bool:
         """
-        Check if the current queue is at the max size limit.
-
-        Returns:
-            bool: True if the length of the queue is equal to the max size value set, else False.
-        """
-        return self.length == self._max_queue_size if self.has_max_size else False
-
-    def _surpasses_max_size(self, *args) -> bool:
-        """
-        Check if the length of the queue plus the length of the arguments surpasses the max size.
+        Adds an item to the queue.
 
         Parameters:
-            *args: *args: The items to add to the queue.
+            item (Any): The item to be added to the queue.
 
         Returns:
-            bool: True if the length of the queue + length of args surpasses the maz size, False otherwise.
+            bool: True if the item was added successfully to the queue, False if the queue is full and the item couldn't be added.
         """
-        return self.length + len(args) > self._max_queue_size if self.has_max_size else False
+        # Do we even have a max size of the queue?
+        if self.has_max_size():
+            # Are we at the end of the queue?
+            if not self.is_full():
+                self._add_to_queue(item)
+                return True
+            else:
+                return False
+        else:
+            self._add_to_queue(item)
+            return True
+
+    def dequeue(self, multiple: int | None = None) -> Any | None:
+        """
+        Retrieve one or many items from the queue.
+
+        Parameters:
+            multiple (int | None): The number of items to remove from the queue.
+
+        Returns:
+            Any | None: Return one or many items from queue if queue is not empty, else return None.
+        """
+        return self._remove_from_queue(multiple) if not self.is_empty() else None
