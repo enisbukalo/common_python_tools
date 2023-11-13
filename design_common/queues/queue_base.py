@@ -61,12 +61,15 @@ class Queue:
         """
         return self._max_queue_size is not None
 
-    def first(self) -> Any | None:
+    def peek(self) -> Any | None:
         """
-        Return the first element in the queue.
+        Return the highest priority element in the queue.
+        (FIFO) = First Element
+        (LIFO) = Last Element
+        (Priority) = Highest Priority
 
         Returns:
-            Any | None: The first element in the queue, or None if the queue is empty.
+            Any | None: The highest priority element in the queue, or None if the queue is empty.
         """
         return self._queue[0] if not self.is_empty() else None
 

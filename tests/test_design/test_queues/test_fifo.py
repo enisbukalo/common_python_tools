@@ -17,7 +17,7 @@ def test_fifo_properties():
     assert fifo.is_full() is False
     assert fifo.is_empty() is True
     assert fifo.free_space() == None
-    assert fifo.first() is None
+    assert fifo.peek() is None
     assert fifo.last() is None
     assert fifo.length() is 0
 
@@ -28,7 +28,7 @@ def test_enqueue_with_no_max_size():
 
     assert fifo.enqueue(1) is True
     assert fifo.length() == 1
-    assert fifo.first() == 1
+    assert fifo.peek() == 1
     assert fifo.last() == 1
 
     fifo.clear()
@@ -41,7 +41,7 @@ def test_enqueue_with_no_max_size():
         assert fifo.enqueue(item) is True
         running_length += 1
         assert fifo.length() == running_length
-        assert fifo.first() == 0
+        assert fifo.peek() == 0
         assert fifo.last() == item
 
     assert fifo._queue == [0, 1, 2, 3, 4, 5, 6, 7]
@@ -53,22 +53,22 @@ def test_enqueue_with_max_size():
 
     assert fifo.enqueue(1) is True
     assert fifo.length() == 1
-    assert fifo.first() == 1
+    assert fifo.peek() == 1
     assert fifo.last() == 1
 
     assert fifo.enqueue(2) is True
     assert fifo.length() == 2
-    assert fifo.first() == 1
+    assert fifo.peek() == 1
     assert fifo.last() == 2
 
     assert fifo.enqueue(3) is True
     assert fifo.length() == 3
-    assert fifo.first() == 1
+    assert fifo.peek() == 1
     assert fifo.last() == 3
 
     assert fifo.enqueue(4) is False
     assert fifo.length() == 3
-    assert fifo.first() == 1
+    assert fifo.peek() == 1
     assert fifo.last() == 3
 
 

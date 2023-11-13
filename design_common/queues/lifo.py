@@ -19,7 +19,7 @@ class Lifo(Queue):
         self._queue.append(item)
 
     def _remove_from_queue(self, multiple):
-        "Responsible for retrieving an item from the back of the queue."
+        """Responsible for retrieving an item from the back of the queue."""
         if multiple is not None:
             to_return = []
             for _ in range(multiple):

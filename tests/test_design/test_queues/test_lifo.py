@@ -17,7 +17,7 @@ def test_lifo_properties():
     assert lifo.is_full() is False
     assert lifo.is_empty() is True
     assert lifo.free_space() == None
-    assert lifo.first() is None
+    assert lifo.peek() is None
     assert lifo.last() is None
     assert lifo.length() is 0
 
@@ -28,7 +28,7 @@ def test_enqueue_with_no_max_size():
 
     assert lifo.enqueue(1) is True
     assert lifo.length() == 1
-    assert lifo.first() == 1
+    assert lifo.peek() == 1
     assert lifo.last() == 1
 
     lifo.clear()
@@ -41,7 +41,7 @@ def test_enqueue_with_no_max_size():
         assert lifo.enqueue(item) is True
         running_length += 1
         assert lifo.length() == running_length
-        assert lifo.first() == 0
+        assert lifo.peek() == 0
         assert lifo.last() == item
 
     assert lifo._queue == items_to_add
@@ -53,22 +53,22 @@ def test_enqueue_with_max_size():
 
     assert lifo.enqueue(1) is True
     assert lifo.length() == 1
-    assert lifo.first() == 1
+    assert lifo.peek() == 1
     assert lifo.last() == 1
 
     assert lifo.enqueue(2) is True
     assert lifo.length() == 2
-    assert lifo.first() == 1
+    assert lifo.peek() == 1
     assert lifo.last() == 2
 
     assert lifo.enqueue(3) is True
     assert lifo.length() == 3
-    assert lifo.first() == 1
+    assert lifo.peek() == 1
     assert lifo.last() == 3
 
     assert lifo.enqueue(4) is False
     assert lifo.length() == 3
-    assert lifo.first() == 1
+    assert lifo.peek() == 1
     assert lifo.last() == 3
 
 
