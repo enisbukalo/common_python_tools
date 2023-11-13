@@ -1,5 +1,5 @@
-from design_common.state_machines.FSM.fsm_state_machine import FsmStateMachine
-from design_common.state_machines.FSM.transition import Transition
+from design_common.state_machines.fsm.fsm_state_machine import FsmStateMachine
+from design_common.state_machines.fsm.transition import Transition
 
 from fsm_test_states import *
 from fsm_test_events import Events

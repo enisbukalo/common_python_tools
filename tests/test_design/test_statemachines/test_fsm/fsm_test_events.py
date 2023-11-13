@@ -1,4 +1,4 @@
-from design_common.state_machines.FSM.event import Event
+from design_common.state_machines.fsm.event import Event
 
 
 class Events:

@@ -1,4 +1,4 @@
-from design_common.state_machines.FSM.state import State
+from design_common.state_machines.fsm.state import State
 from fsm_test_events import Events
 
 

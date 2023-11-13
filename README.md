@@ -7,8 +7,8 @@ Run the following commands in your local environment to use the package.
 
 ## Local Setup (Cloning)
 Run the following commands in your local environment to test.
-- ```python setup.py sdist bdist_wheel```
-- ```pip install dist/commnon_tools-{version}-py3-none-any.whl --force-reinstall```
+- ```python setup.py sdist bdist_wheel clean --all develop```
+- ```pip install dist/commnon_tools-0.1.0-py3-none-any.whl --force-reinstall```
 
 ---
 
@@ -16,7 +16,13 @@ Run the following commands in your local environment to test.
 ### [Classes](https://github.com/enisbukalo/common_tools/tree/main/class_common)
 - [Class Tools](https://github.com/enisbukalo/common_tools/blob/main/class_common/class_tools.py)
 ### [Design](https://github.com/enisbukalo/common_tools/tree/main/design_common)
+#### [State Machines](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines)
 - [Finite State Machine (FSM)](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines/FSM)
+#### [Queue's](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues)
+- [Double-Ended Queue (Deque)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/deque)
+- [First In First Out (FIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/fifo)
+- [Last In First Out (LIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/lifo)
+- [Priority Queue](https://github.com/enisbukalo/common_tools/tree/main/queues/state_machines/priority)
 ### [Logging](https://github.com/enisbukalo/common_tools/tree/main/logging_common)
 - [General Logger](https://github.com/enisbukalo/common_tools/blob/main/logging_common/logger.py)
 ### [Network](https://github.com/enisbukalo/common_tools/tree/main/network_common)

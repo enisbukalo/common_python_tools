@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = "0.0.1"
+VERSION = "0.1.0"
 DESCRIPTION = "Custom Python Tools."
 LONG_DESCRIPTION = "My package to house my commonly used Python tools."
 
@@ -16,4 +16,4 @@ setup(
     url="https://github.com/enisbukalo/common_tools.git",
     license="Apache License 2.0",
     python_requires=">=3.10",
-    )
+)
