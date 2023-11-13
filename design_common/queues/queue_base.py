@@ -55,7 +55,7 @@ class Queue:
         Returns:
             int | None: The amount of free space available, or None if the boundary is not enabled.
         """
-        return self._boundary - self.__len__() if self.boundary_enabled else None
+        return self._boundary - self.length if self.boundary_enabled else None
 
     @property
     def is_empty(self) -> bool:
@@ -65,7 +65,7 @@ class Queue:
         Returns:
             bool: True if the queue is empty, False otherwise.
         """
-        return True if self.__len__() == 0 else False
+        return True if self.length == 0 else False
 
     @property
     def boundary_enabled(self) -> bool:
@@ -96,6 +96,36 @@ class Queue:
             bool: True if partial enqueuing is enabled, False otherwise.
         """
         return self._takes_partial
+
+    @property
+    def first(self) -> Any | None:
+        """
+        Return the first element in the queue.
+
+        Returns:
+            Any | None: The first element in the queue, or None if the queue is empty.
+        """
+        return self._queue[0] if not self.is_empty else None
+
+    @property
+    def last(self) -> Any | None:
+        """
+        Get the last element in the queue.
+
+        Returns:
+            Any | None: The last element in the queue, or None if the queue is empty.
+        """
+        return self._queue[-1] if not self.is_empty else None
+
+    @property
+    def length(self) -> int:
+        """
+        Return the number of elements in the queue.
+
+        Returns:
+            int: The number of elements in the queue.
+        """
+        return len(self._queue)
 
     @classmethod
     def enqueue(self, *args) -> None:
@@ -148,7 +178,7 @@ class Queue:
         Returns:
             bool: True if the length of the queue is equal to the boundary value set, else False.
         """
-        return self.__len__() == self._boundary if self.boundary_enabled else False
+        return self.length == self._boundary if self.boundary_enabled else False
 
     def _surpasses_boundary(self, *args) -> bool:
         """
@@ -160,31 +190,4 @@ class Queue:
         Returns:
             bool: True if the length of the queue + length of args surpasses the boundary, False otherwise.
         """
-        return self.__len__() + len(args) > self._boundary if self.boundary_enabled else False
-
-    def __first__(self) -> Any | None:
-        """
-        Return the first element in the queue.
-
-        Returns:
-            Any | None: The first element in the queue, or None if the queue is empty.
-        """
-        return self._queue[0] if not self.is_empty else None
-
-    def __last__(self) -> Any | None:
-        """
-        Get the last element in the queue.
-
-        Returns:
-            Any | None: The last element in the queue, or None if the queue is empty.
-        """
-        return self._queue[-1] if not self.is_empty else None
-
-    def __len__(self) -> int:
-        """
-        Return the number of elements in the queue.
-
-        Returns:
-            int: The number of elements in the queue.
-        """
-        return len(self._queue)
+        return self.length + len(args) > self._boundary if self.boundary_enabled else False

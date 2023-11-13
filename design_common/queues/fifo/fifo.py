@@ -38,7 +38,7 @@ class Fifo(Queue):
             if surpasses_boundary:
                 # Are we replacing old items with the new items?
                 if self.replace_enabled:
-                    amount_to_remove = len(args) - (self._boundary - self.__len__())
+                    amount_to_remove = len(args) - (self._boundary - self.length)
                     for _ in range(amount_to_remove):
                         self.dequeue()
                     self._queue.extend(args)
