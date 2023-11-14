@@ -1,8 +1,8 @@
-from typing import Any
+from typing import Any, Iterable
 
 
 class Queue:
-    def __init__(self, max_queue_size: int = None) -> None:
+    def __init__(self, max_queue_size: int = None):
         """
         Base Queue class for other specialized queue types to use.
 
@@ -105,7 +105,7 @@ class Queue:
         raise NotImplementedError
 
     @classmethod
-    def _remove_from_queue(self, multiple: int | None = None) -> Any | None:
+    def _remove_from_queue(self, multiple: int | None = None) -> Any | Iterable[Any] | None:
         """
         Retrieve an item from the queue.
 
@@ -113,7 +113,7 @@ class Queue:
             multiple (int | None): The number of items to remove from the queue. Defaults to None.
 
         Returns:
-            Any | None: The removed item from the queue, or None if the queue is empty.
+            Any | Iterable[Any] | None: The removed item from the queue, or None if the queue is empty.
 
         Raises:
             NotImplementedError: This method is not implemented.
@@ -146,7 +146,7 @@ class Queue:
             self._add_to_queue(item)
             return True
 
-    def dequeue(self, multiple: int | None = None) -> Any | None:
+    def dequeue(self, multiple: int | None = None) -> Any | Iterable[Any] | None:
         """
         Retrieve one or many items from the queue.
 
@@ -154,6 +154,9 @@ class Queue:
             multiple (int | None): The number of items to remove from the queue.
 
         Returns:
-            Any | None: Return one or many items from queue if queue is not empty, else return None.
+            Any | Iterable[Any] | None: Return one or many items from queue if queue is not empty, else return None.
         """
+        if multiple is not None and multiple < 0:
+            raise ValueError("Cannot dequeue negative number of items.")
+
         return self._remove_from_queue(multiple) if not self.is_empty() else None

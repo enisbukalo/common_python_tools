@@ -50,6 +50,7 @@ def test_enqueue_with_no_max_size():
 def test_enqueue_with_max_size():
     lifo = Lifo(max_queue_size=3)
     assert lifo.length() == 0
+    assert lifo.free_space() == 3
 
     assert lifo.enqueue(1) is True
     assert lifo.length() == 1
@@ -65,6 +66,8 @@ def test_enqueue_with_max_size():
     assert lifo.length() == 3
     assert lifo.peek() == 1
     assert lifo.last() == 3
+
+    assert lifo.free_space() == 0
 
     assert lifo.enqueue(4) is False
     assert lifo.length() == 3

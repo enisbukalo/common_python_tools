@@ -2,7 +2,7 @@ from design_common.queues.queue_base import Queue
 
 
 class Lifo(Queue):
-    def __init__(self, max_queue_size: int = None) -> None:
+    def __init__(self, max_queue_size: int = None):
         """
         Initializes a Last In First Out queue (LIFO).
 
@@ -23,11 +23,9 @@ class Lifo(Queue):
         if multiple is not None:
             to_return = []
             for _ in range(multiple):
-                try:
-                    to_return.append(self._queue.pop(-1))
-                except IndexError:
-                    # We have reached the end of the queue, lets return what we have.
+                if self.is_empty():
                     break
+                to_return.append(self._queue.pop(-1))
             return to_return
         else:
             return self._queue.pop(-1)

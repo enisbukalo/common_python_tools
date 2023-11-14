@@ -50,6 +50,7 @@ def test_enqueue_with_no_max_size():
 def test_enqueue_with_max_size():
     fifo = Fifo(max_queue_size=3)
     assert fifo.length() == 0
+    assert fifo.free_space() == 3
 
     assert fifo.enqueue(1) is True
     assert fifo.length() == 1
@@ -65,6 +66,8 @@ def test_enqueue_with_max_size():
     assert fifo.length() == 3
     assert fifo.peek() == 1
     assert fifo.last() == 3
+
+    assert fifo.free_space() == 0
 
     assert fifo.enqueue(4) is False
     assert fifo.length() == 3
