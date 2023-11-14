@@ -17,25 +17,58 @@ class Priority(Queue):
         super().__init__(max_queue_size)
         self._queue: list[Item] = []
 
-    def _find_highest_priority(self) -> Item:
-        """
-        Find the item with the highest priority in the queue and remove it.
+    def _merge(self, left: list[Item], right: list[Item]) -> list[Item]:
+        if left is None or len(left) == 0:
+            return right
+        if right is None or len(right) == 0:
+            return left
+        result = []
 
-        Returns:
-            Item: The item with the highest priority.
+        left_index = right_index = 0
 
-        Raises:
-            IndexError: If the queue is empty.
-        """
-        highest_priority_index = 0
-        priority_value = self._queue[0].priority
-        item: Item
-        for i, item in enumerate(self._queue):
-            if item.priority > priority_value:
-                highest_priority_index = i
-                priority_value = item.priority
+        while len(left) != 0 and len(right) != 0:
+            if left[left_index] <= right[right_index]:
+                result.append(left.pop())
+            else:
+                result.append(right.pop())
 
-        return self._queue.pop(highest_priority_index)
+        while len(left) != 0:
+            result.append(left.pop())
+
+        while len(right) != 0:
+            result.append(right.pop())
+
+        return result
+
+    def _merge_sort(self, items: list[Item]):
+        if len(items) < 2:
+            return
+
+        mid_point = len(items) // 2
+        L = items[:mid_point]
+        R = items[mid_point:]
+
+        return self._merge(self._merge_sort(L), self._merge_sort(R))
+
+        def _find_highest_priority(self) -> Item:
+            """
+            Find the item with the highest priority in the queue and remove it.
+
+            Returns:
+                Item: The item with the highest priority.
+
+            Raises:
+                IndexError: If the queue is empty.
+            """
+            highest_priority_index = 0
+            priority_value = self._queue[0].priority
+            item: Item
+            for i, item in enumerate(self._queue):
+                if item.priority > priority_value:
+                    highest_priority_index = i
+                    priority_value = item.priority
+
+            return self._queue.pop(highest_priority_index)
 
     def _add_to_queue(self, item: Item):
         """Responsible for adding an item to the queue depending on priority."""
