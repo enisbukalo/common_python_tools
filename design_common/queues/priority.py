@@ -18,6 +18,15 @@ class Priority(Queue):
         self._queue: list[Item] = []
 
     def _find_highest_priority(self) -> Item:
+        """
+        Find the item with the highest priority in the queue and remove it.
+
+        Returns:
+            Item: The item with the highest priority.
+
+        Raises:
+            IndexError: If the queue is empty.
+        """
         highest_priority_index = 0
         priority_value = self._queue[0].priority
         item: Item
