@@ -2,6 +2,9 @@ name: Run Pytests
 
 on: [push, pull_request]
 
+env:
+    VERSION: "0.1.0"
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -19,7 +22,8 @@ jobs:
               run: |
                   python -m pip install --upgrade pip
                   pip install -r requirements.txt
-                  pip install -e .
+                  python setup.py sdist bdist_wheel clean --all develop
+                  pip install dist/common_tools-$VERSION-py3-none-any.whl --force-reinstall --no-cache-dir
             - name: Pip Freeze
               run: pip freeze
             - name: Test with pytest
