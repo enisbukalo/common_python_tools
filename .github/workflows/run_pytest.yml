@@ -25,7 +25,9 @@ jobs:
                   python setup.py sdist bdist_wheel clean --all develop
                   pip install dist/common_tools-$VERSION-py3-none-any.whl --force-reinstall --no-cache-dir
             - name: Pip Freeze
-              run: pip freeze
+              run: |
+                    pip freeze
+                    ls -l
             - name: Test with pytest
               run: coverage run -m pytest .
             - name: Coverage Report
