@@ -11,7 +11,7 @@ setup(
     author_email="N/A",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    packages=find_packages(),
+    packages=["class_common", "design_common", "logging_common", "network_common", "statistics_common", "utilities"],
     install_requires=["pytest"],
     url="https://github.com/enisbukalo/common_tools.git",
     license="Apache License 2.0",
