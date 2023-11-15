@@ -1,1 +1,1 @@
-from .merge_sort import MergeSort
+from .merge_sort import *
