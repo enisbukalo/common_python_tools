@@ -5,7 +5,7 @@ DESCRIPTION = "Custom Python Tools."
 LONG_DESCRIPTION = "My package to house my commonly used Python tools."
 
 setup(
-    name="commnon_tools",
+    name="common_tools",
     version=VERSION,
     author="Enis Bukalo",
     author_email="N/A",
