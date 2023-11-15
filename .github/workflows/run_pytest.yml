@@ -25,7 +25,7 @@ jobs:
                   pip install dist/commnon_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir
             - name: Test with pytest
               run: |
-                  coverage run -m pytest -V -s
+                  coverage run -m pytest .
             - name: Coverage Report
               run: |
                   coverage report -m
