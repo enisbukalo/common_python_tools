@@ -9,9 +9,13 @@ Run the following commands in your local environment to use the package.
 Run the following commands in your local environment to test.
 - ```python setup.py sdist bdist_wheel clean --all develop```
 - ```pip install dist/common_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir```
-
 ---
 
+## Usage
+After installing it either locally or via PIP from the github repo, the packages should become available.<br>
+IE: ```from class_common import Singleton```
+
+---
 ## Components
 ### [Classes](https://github.com/enisbukalo/common_tools/tree/main/class_common)
 - [Class Tools](https://github.com/enisbukalo/common_tools/blob/main/class_common/class_tools.py)
