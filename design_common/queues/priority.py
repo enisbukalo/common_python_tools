@@ -30,11 +30,13 @@ class Priority(Queue):
         self._sort = sort
 
     @property
-    def sort(self):
+    def sort(self) -> bool:
+        """Get if the queue should be sorted on enqueue."""
         return self._sort
 
     @sort.setter
-    def sort(self, value):
+    def sort(self, value: bool) -> None:
+        """Set if the queue should be sorted on enqueue."""
         self._sort = value
 
     def _find_highest_priority(self) -> Item:
