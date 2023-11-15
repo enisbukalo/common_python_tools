@@ -17,15 +17,17 @@ jobs:
             - name: Set up Python ${{ matrix.python-version }}
               uses: actions/setup-python@v4
               with:
-                  python-version: ${{ matrix.python-version }}
+                python-version: ${{ matrix.python-version }}
             - name: Install dependencies
               run: |
-                  python -m pip install --upgrade pip
-                  pip install -r requirements.txt
-                  python setup.py sdist bdist_wheel clean --all develop
-                  pip install dist/common_tools-$VERSION-py3-none-any.whl --force-reinstall --no-cache-dir
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+                python setup.py sdist bdist_wheel clean --all develop
+                pip install dist/common_tools-$VERSION-py3-none-any.whl --force-reinstall --no-cache-dir
             - name: Pip Freeze
-              run: pip freeze
+              run: |
+                pip freeze
+                pip show -f common-tools
             - name: Test with pytest
               run: coverage run -m pytest .
             - name: Coverage Report
