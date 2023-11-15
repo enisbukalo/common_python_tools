@@ -50,25 +50,25 @@ class Priority(Queue):
 
         return self._merge(self._merge_sort(L), self._merge_sort(R))
 
-        def _find_highest_priority(self) -> Item:
-            """
-            Find the item with the highest priority in the queue and remove it.
+    def _find_highest_priority(self) -> Item:
+        """
+        Find the item with the highest priority in the queue and remove it.
 
-            Returns:
-                Item: The item with the highest priority.
+        Returns:
+            Item: The item with the highest priority.
 
-            Raises:
-                IndexError: If the queue is empty.
-            """
-            highest_priority_index = 0
-            priority_value = self._queue[0].priority
-            item: Item
-            for i, item in enumerate(self._queue):
-                if item.priority > priority_value:
-                    highest_priority_index = i
-                    priority_value = item.priority
+        Raises:
+            IndexError: If the queue is empty.
+        """
+        highest_priority_index = 0
+        priority_value = self._queue[0].priority
+        item: Item
+        for i, item in enumerate(self._queue):
+            if item.priority > priority_value:
+                highest_priority_index = i
+                priority_value = item.priority
 
-            return self._queue.pop(highest_priority_index)
+        return self._queue.pop(highest_priority_index)
 
     def _add_to_queue(self, item: Item):
         """Responsible for adding an item to the queue depending on priority."""
