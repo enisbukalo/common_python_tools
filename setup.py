@@ -1,5 +1,10 @@
 from setuptools import setup, find_packages
 
+import os
+from pathlib import Path
+
+os.chdir(Path(__file__).parent.absolute())
+
 VERSION = "0.1.0"
 DESCRIPTION = "Custom Python Tools."
 LONG_DESCRIPTION = "My package to house my commonly used Python tools."
