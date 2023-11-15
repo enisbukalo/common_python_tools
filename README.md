@@ -15,6 +15,7 @@ Run the following commands in your local environment to test.
 ## Components
 ### [Classes](https://github.com/enisbukalo/common_tools/tree/main/class_common)
 - [Class Tools](https://github.com/enisbukalo/common_tools/blob/main/class_common/class_tools.py)
+---
 ### [Design](https://github.com/enisbukalo/common_tools/tree/main/design_common)
 #### [State Machines](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines)
 - [Finite State Machine (FSM)](https://github.com/enisbukalo/common_tools/tree/main/design_common/state_machines/FSM)
@@ -22,14 +23,24 @@ Run the following commands in your local environment to test.
 - [First In First Out (FIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/fifo)
 - [Last In First Out (LIFO)](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues/lifo)
 - [Priority Queue](https://github.com/enisbukalo/common_tools/tree/main/queues/state_machines/priority)
+---
 ### [Logging](https://github.com/enisbukalo/common_tools/tree/main/logging_common)
 - [General Logger](https://github.com/enisbukalo/common_tools/blob/main/logging_common/logger.py)
+---
 ### [Network](https://github.com/enisbukalo/common_tools/tree/main/network_common)
 - [Network Tools](https://github.com/enisbukalo/common_tools/blob/main/network_common/network_tools.py)
+---
 ### [Statistics](https://github.com/enisbukalo/common_tools/tree/main/statistics_common)
 - [Statistics Tools](https://github.com/enisbukalo/common_tools/blob/main/statistics_common/statistics_tools.py)
+---
+### [Utilities](https://github.com/enisbukalo/common_tools/tree/main/utilities)
+#### [Sorting](https://github.com/enisbukalo/common_tools/tree/main/utilities/sorting)
+- [Merge Sort](https://github.com/enisbukalo/common_tools/blob/main/utilities/sorting/merge_sort.py)
+---
 ### [Tests](https://github.com/enisbukalo/common_tools/tree/main/tests)
 - [Class Tools Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_classes)
 - [FSM Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_design/test_fsm)
 - [Network Tools Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_network)
 - [Statistics Tools Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_statistics)
+- [Utilities Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_utilities)
+---
