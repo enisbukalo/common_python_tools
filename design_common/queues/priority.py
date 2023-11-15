@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from design_common.queues.queue_base import Queue
+from utilities.sorting.merge_sort import MergeSort
 
 
 @dataclass
@@ -12,43 +13,29 @@ class Item:
     priority: int
 
 
+class Sort(MergeSort):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def _compare(self, left: Item, right: Item) -> bool:
+        return True if left.priority <= right.priority else False
+
+
 class Priority(Queue):
-    def __init__(self, max_queue_size: int = None):
+    def __init__(self, max_queue_size: int = None, sort: bool = False):
         super().__init__(max_queue_size)
         self._queue: list[Item] = []
+        self.merge_sort = Sort()
+        self._sorted = False
+        self._sort = sort
 
-    def _merge(self, left: list[Item], right: list[Item]) -> list[Item]:
-        if left is None or len(left) == 0:
-            return right
-        if right is None or len(right) == 0:
-            return left
-        result = []
+    @property
+    def sort(self):
+        return self._sort
 
-        left_index = right_index = 0
-
-        while len(left) != 0 and len(right) != 0:
-            if left[left_index] <= right[right_index]:
-                result.append(left.pop())
-            else:
-                result.append(right.pop())
-
-        while len(left) != 0:
-            result.append(left.pop())
-
-        while len(right) != 0:
-            result.append(right.pop())
-
-        return result
-
-    def _merge_sort(self, items: list[Item]):
-        if len(items) < 2:
-            return
-
-        mid_point = len(items) // 2
-        L = items[:mid_point]
-        R = items[mid_point:]
-
-        return self._merge(self._merge_sort(L), self._merge_sort(R))
+    @sort.setter
+    def sort(self, value):
+        self._sort = value
 
     def _find_highest_priority(self) -> Item:
         """
@@ -60,19 +47,24 @@ class Priority(Queue):
         Raises:
             IndexError: If the queue is empty.
         """
-        highest_priority_index = 0
-        priority_value = self._queue[0].priority
-        item: Item
-        for i, item in enumerate(self._queue):
-            if item.priority > priority_value:
-                highest_priority_index = i
-                priority_value = item.priority
+        if not self._sorted:
+            highest_priority_index = 0
+            priority_value = self._queue[0].priority
+            item: Item
+            for i, item in enumerate(self._queue):
+                if item.priority > priority_value:
+                    highest_priority_index = i
+                    priority_value = item.priority
 
-        return self._queue.pop(highest_priority_index)
+            return self._queue.pop(highest_priority_index)
+        else:
+            return self._queue.pop()
 
     def _add_to_queue(self, item: Item):
         """Responsible for adding an item to the queue depending on priority."""
         self._queue.append(item)
+        self._queue = self.merge_sort.merge_sort(self._queue) if self._sort else self._queue
+        self._sorted = True if self._sort else False
 
     def _remove_from_queue(self, multiple):
         """Responsible for retrieving one or many items from a location depending on priority."""
