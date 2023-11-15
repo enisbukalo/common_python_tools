@@ -31,6 +31,7 @@ from logging_common import Logger
 from network_common import ping_check
 from statistics_common import calc_linear_regression
 from utilities.sorting import MergeSort
+from utilities.decorators import ensure_instance
 ```
 
 ---
@@ -58,6 +59,7 @@ from utilities.sorting import MergeSort
 ### [Utilities](https://github.com/enisbukalo/common_tools/tree/main/utilities)
 #### [Sorting](https://github.com/enisbukalo/common_tools/tree/main/utilities/sorting)
 - [Merge Sort](https://github.com/enisbukalo/common_tools/blob/main/utilities/sorting/merge_sort.py)
+#### [Decorators](https://github.com/enisbukalo/common_tools/tree/main/utilities/decorators/decorators.py)
 ---
 ### [Tests](https://github.com/enisbukalo/common_tools/tree/main/tests)
 - [Class Tools Tests](https://github.com/enisbukalo/common_tools/tree/main/tests/test_classes)
