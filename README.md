@@ -12,8 +12,22 @@ Run the following commands in your local environment to test.
 ---
 
 ## Usage
-After installing it either locally or via PIP from the github repo, the packages should become available.<br>
-IE: ```from class_common import Singleton```
+After installing it either locally or via PIP from the github repo, the packages can be used in the following manner.<br>
+```python
+from class_common import Singleton
+from design_common.queues import Fifo
+from design_common.queues import Lifo
+from design_common.queues import Priority
+from design_common.queues.queue_base import Queue
+from design_common.state_machines.fsm import FsmStateMachine
+from design_common.state_machines.fsm import Event
+from design_common.state_machines.fsm import State
+from design_common.state_machines.fsm import Transition
+from logging_common import Logger
+from network_common import ping_check
+from statistics_common import calc_linear_regression
+from utilities.sorting import MergeSort
+```
 
 ---
 ## Components
