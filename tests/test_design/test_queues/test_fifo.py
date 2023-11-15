@@ -1,6 +1,6 @@
 import pytest
 
-from design_common.queues.fifo import Fifo
+from design_common.queues import Fifo
 
 
 def test_fifo_properties():
