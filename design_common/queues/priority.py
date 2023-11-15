@@ -2,30 +2,15 @@ from dataclasses import dataclass
 from typing import Any
 
 from design_common.queues.queue_base import Queue
+from design_common.queues.priority_item import Item
 from utilities.sorting.merge_sort import MergeSort
-
-
-@dataclass
-class Item:
-    """Higher the number, higher the priority."""
-
-    item: Any
-    priority: int
-
-
-class Sort(MergeSort):
-    def __init__(self) -> None:
-        super().__init__()
-
-    def _compare(self, left: Item, right: Item) -> bool:
-        return True if left.priority <= right.priority else False
 
 
 class Priority(Queue):
     def __init__(self, max_queue_size: int = None, sort: bool = False):
         super().__init__(max_queue_size)
         self._queue: list[Item] = []
-        self.merge_sort = Sort()
+        self.merge_sort = MergeSort()
         self._sorted = False
         self._sort = sort
 

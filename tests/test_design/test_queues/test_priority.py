@@ -1,6 +1,7 @@
 import pytest
 
-from design_common.queues.priority import Priority, Item
+from design_common.queues.priority import Priority
+from design_common.queues.priority_item import Item
 
 
 def test_priority_properties():
