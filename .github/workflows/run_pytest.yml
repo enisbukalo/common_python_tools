@@ -22,7 +22,7 @@ jobs:
             - name: Install self
               run: |
                   python setup.py sdist bdist_wheel clean --all develop
-                  pip install dist/commnon_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir
+                  pip install dist/common_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir
             - name: Test with pytest
               run: |
                   coverage run -m pytest .

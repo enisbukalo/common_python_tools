@@ -8,7 +8,7 @@ Run the following commands in your local environment to use the package.
 ## Local Setup (Cloning)
 Run the following commands in your local environment to test.
 - ```python setup.py sdist bdist_wheel clean --all develop```
-- ```pip install dist/commnon_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir```
+- ```pip install dist/common_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir```
 
 ---
 
