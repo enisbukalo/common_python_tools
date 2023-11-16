@@ -30,7 +30,7 @@ from design_common.state_machines.fsm import Transition
 from logging_common import Logger
 from network_common import ping_check
 from statistics_common import calc_linear_regression
-from utilities.sorting import MergeSort
+from utilities.sorting import merge_sort
 from utilities.decorators import ensure_instance
 ```
 
