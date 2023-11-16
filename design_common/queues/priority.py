@@ -1,13 +1,12 @@
 from design_common.queues.queue_base import Queue
 from design_common.queues.priority_item import Item
-from utilities.sorting.merge_sort import MergeSort
+from utilities.sorting.merge_sort import merge_sort
 
 
 class Priority(Queue):
     def __init__(self, max_queue_size: int = None, sort: bool = False):
         super().__init__(max_queue_size)
         self._queue: list[Item] = []
-        self.merge_sort = MergeSort()
         self._sorted = False
         self._sort = sort
 
@@ -47,7 +46,7 @@ class Priority(Queue):
     def _add_to_queue(self, item: Item):
         """Responsible for adding an item to the queue depending on priority."""
         self._queue.append(item)
-        self._queue = self.merge_sort.merge_sort(self._queue) if self._sort else self._queue
+        self._queue = merge_sort(self._queue) if self._sort else self._queue
         self._sorted = True if self._sort else False
 
     def _remove_from_queue(self, multiple):

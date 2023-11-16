@@ -1,14 +1,18 @@
 from typing import Any
 
 
-class MergeSort:
-    def __init__(self) -> None:
-        """Merge sorting object for sorting as list of Integers.
+def merge_sort(items: list[Any]) -> list[Any]:
+    """
+    Sorts a list of items using the merge sort algorithm.
 
-        Ability to override _compare to compare anything you wish."""
-        pass
+    Parameters:
+        items (list[Any]): The list of items to be sorted.
 
-    def _merge(self, left: list[Any], right: list[Any]) -> list[Any]:
+    Returns:
+        list[Any]: The sorted list of items.
+    """
+
+    def merge(left: list[Any], right: list[Any]) -> list[Any]:
         """
         Merge two lists in sorted order from lowest to highest.
 
@@ -35,21 +39,11 @@ class MergeSort:
 
         return result
 
-    def merge_sort(self, items: list[Any]) -> list[Any]:
-        """
-        Sorts a list of items using the merge sort algorithm.
+    if len(items) <= 1:
+        return items
 
-        Parameters:
-            items (list[Any]): The list of items to be sorted.
+    mid_point = len(items) // 2
+    L = items[:mid_point]
+    R = items[mid_point:]
 
-        Returns:
-            list[Any]: The sorted list of items.
-        """
-        if len(items) <= 1:
-            return items
-
-        mid_point = len(items) // 2
-        L = items[:mid_point]
-        R = items[mid_point:]
-
-        return self._merge(self.merge_sort(L), self.merge_sort(R))
+    return merge(merge_sort(L), merge_sort(R))
