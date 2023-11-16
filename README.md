@@ -9,9 +9,9 @@ Install using pip directly from the github repo.
 Run the following commands in your local environment to test.
 - ```python setup.py sdist bdist_wheel clean --all develop```
 - ```pip install dist/common_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir```
-OR
+<br>OR<br>
 - ```pip install -e .```
-OR
+<br>OR<br>
 - ```python setup.py install```
 ---
 
