@@ -7,6 +7,7 @@ Install using pip directly from the github repo.
 
 ## Local Setup (Cloning)
 Run the following commands in your local environment to test.
+- Clone Repo
 - ```python setup.py sdist bdist_wheel clean --all develop```
 - ```pip install dist/common_tools-0.1.0-py3-none-any.whl --force-reinstall --no-cache-dir```
 <br>OR<br>
