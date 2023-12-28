@@ -45,7 +45,7 @@ from utilities.decorators import ensure_instance
 #### [Queue's](https://github.com/enisbukalo/common_tools/tree/main/design_common/queues)
 - [First In First Out (FIFO)](https://github.com/enisbukalo/common_tools/blob/main/design_common/queues/fifo.py)
 - [Last In First Out (LIFO)](https://github.com/enisbukalo/common_tools/blob/main/design_common/queues/lifo.py)
-- [Priority Queue](https://github.com/enisbukalo/common_tools/blob/main/queues/state_machines/priorit.pyy)
+- [Priority Queue](https://github.com/enisbukalo/common_tools/blob/main/queues/state_machines/priority.py)
 ---
 ### [Logging](https://github.com/enisbukalo/common_tools/tree/main/logging_common)
 - [General Logger](https://github.com/enisbukalo/common_tools/blob/main/logging_common/logger.py)
