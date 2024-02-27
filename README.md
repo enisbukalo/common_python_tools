@@ -30,6 +30,7 @@ from design_common.state_machines.fsm import State
 from design_common.state_machines.fsm import Transition
 from logging_common import Logger
 from network_common import ping_check
+from network_common import socket_server
 from statistics_common import calc_linear_regression
 from utilities.sorting import merge_sort
 from utilities.decorators import ensure_instance
@@ -53,6 +54,7 @@ from utilities.decorators import ensure_instance
 ---
 ### [Network](https://github.com/enisbukalo/common_tools/tree/main/network_common)
 - [Network Tools](https://github.com/enisbukalo/common_tools/blob/main/network_common/network_tools.py)
+- [Socket Server](https://github.com/enisbukalo/common_tools/blob/main/network_common/socket_server.py)
 ---
 ### [Statistics](https://github.com/enisbukalo/common_tools/tree/main/statistics_common)
 - [Statistics Tools](https://github.com/enisbukalo/common_tools/blob/main/statistics_common/statistics_tools.py)
