@@ -3,11 +3,11 @@ import time
 
 from pathlib import Path
 
+from typing import Union, List
+
 
 class Logger:
-    def __init__(
-        self, verbosity: str = "DEBUG", log_to_file: bool = True, log_file_path: str = "", logger_name: str = None
-    ) -> None:
+    def __init__(self, verbosity: str = "DEBUG", log_to_file: bool = True, log_file_path: str = "", logger_name: str = None) -> None:
         """
         Initializes the logger with the specified settings.
 
@@ -31,9 +31,7 @@ class Logger:
         self.logger = logging.getLogger(name=logger_name)
         self.logger.setLevel(self.verbosity)
 
-        formatter = logging.Formatter(
-            "%(asctime)s - %(levelname)s - %(module)s:%(lineno)s - %(funcName)s() - %(levelname)s - %(message)s"
-        )
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(module)s:%(lineno)s - %(funcName)s() - %(levelname)s - %(message)s")
 
         self.logger.addHandler(self.__create_stream_handler(formatter, logger_name))
 
@@ -67,6 +65,13 @@ class Logger:
             case _:
                 raise ValueError("Invalid Verbosity Level.")
 
+    def __get_handlers(self, handler_name: str) -> Union[int, List]:
+        handlers = self.logger.manager.loggerDict.get(handler_name)
+        if handlers is None:
+            return []
+        else:
+            return handlers
+
     def __create_stream_handler(self, format: logging.Formatter, name: str) -> logging.StreamHandler:
         """
         Create a stream handler for the logger.
@@ -79,9 +84,8 @@ class Logger:
             logging.StreamHandler: The created stream handler.
         """
         stream_handler_name = f"{name}_StreamHandler"
-        existing_streamhandlers = [
-            stream_handler_name in x.name for x in self.logger.manager.loggerDict.get(stream_handler_name).handlers
-        ]
+        existing_streamhandlers = self.__get_handlers(stream_handler_name)
+
         if len(existing_streamhandlers) == 0:
             stream_handler = logging.StreamHandler()
             stream_handler.set_name(stream_handler_name)
@@ -109,9 +113,7 @@ class Logger:
         file_date = time.strftime("%Y%m%d-%H%M%S")
         file_handler_name = f"{name}_FileHandler"
         log_location = Path(file_location).joinpath(f"{file_handler_name}_{file_date}.log")
-        existing_file_handlers = [
-            file_handler_name in x.name for x in self.logger.manager.loggerDict.get(file_handler_name).handlers
-        ]
+        existing_file_handlers = self.__get_handlers(file_handler_name)
 
         if len(existing_file_handlers) == 0:
             file_handler = logging.FileHandler(filename=log_location)
