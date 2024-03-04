@@ -25,7 +25,7 @@ class SocketServer:
             if not data:
                 break
             self._last_message = data.decode()
-            self.logger.info(f"Server = Received Data: {self._last_message}")
+            self.logger.info(f"Received Data: {self._last_message}")
             writer.write(data)
             await writer.drain()
             self._last_response = data.decode()
