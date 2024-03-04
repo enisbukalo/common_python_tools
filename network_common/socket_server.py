@@ -1,4 +1,5 @@
 import asyncio
+from logging_common.logger import Logger
 
 
 class SocketServer:
@@ -8,6 +9,7 @@ class SocketServer:
         self._max_read_bytes = 1024
         self._last_message = None
         self._last_response = None
+        self.logger = Logger(log_to_file=False, logger_name="SocketServer")
 
     @property
     def last_message(self):
@@ -23,17 +25,15 @@ class SocketServer:
             if not data:
                 break
             self._last_message = data.decode()
-            print(f"Server = Received Data: {self._last_message}")
+            self.logger.info(f"Server = Received Data: {self._last_message}")
             writer.write(data)
             await writer.drain()
             self._last_response = data.decode()
+            self.logger.info(f"Responded With: {self._last_response}")
         writer.close()
 
-    async def _main(self):
-        print(f"Starting Server With {self._host}:{self._port} ")
+    async def start_server(self):
+        self.logger.info(f"Starting Socket Server With {self._host}:{self._port} ")
         server = await asyncio.start_server(self._server, self._host, self._port)
         await server.serve_forever()
         server.close()
-
-    def start_server(self):
-        asyncio.run(self._main())

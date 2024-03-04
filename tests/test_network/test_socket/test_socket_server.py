@@ -9,8 +9,8 @@ this_file_location = Path(__file__).parent.absolute()
 launch_file = this_file_location.joinpath("launch_socket_server.py")
 sys.path.append(this_file_location.as_posix())
 
-process = subprocess.Popen(["python", launch_file.as_posix()])
-time.sleep(2)
+# process = subprocess.Popen(["python", launch_file.as_posix()])
+# time.sleep(2)
 
 loop = asyncio.get_event_loop()
 
@@ -40,6 +40,7 @@ class SocketClient:
         self.reader, self.writer = await asyncio.open_connection("localhost", 6000)
 
 
+# def test_socket_server():
 client = SocketClient()
 loop.run_until_complete(client.start_client())
 loop.run_until_complete(client.send("Foo"))
@@ -47,4 +48,4 @@ loop.run_until_complete(client.send("Foo"))
 print(client.last_message)
 print(client.last_response)
 
-process.terminate()
+# process.terminate()
