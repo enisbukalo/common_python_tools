@@ -19,6 +19,18 @@ class SocketServer:
     def last_response(self):
         return self._last_response
 
+    @property
+    def host(self):
+        return self._host
+
+    @property
+    def port(self):
+        return self._port
+
+    @property
+    def max_read_bytes(self):
+        return self._max_read_bytes
+
     async def _server(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
         while True:
             data = await reader.read(self._max_read_bytes)
