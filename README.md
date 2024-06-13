@@ -3,7 +3,7 @@ House common methods, functions, designs and other tools that I use commonly wit
 
 ## Pip Install Setup
 Install using pip directly from the github repo.
-- ```pip install git+https://github.com/enisbukalo/common_tools.git```
+- ```pip install git+https://github.com/enisbukalo/common_python_tools.git```
 
 ## Local Setup (Cloning)
 Run the following commands in your local environment to test.
